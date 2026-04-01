@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy 7th Birthday Will! 🎉</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      font-family: 'Nunito', sans-serif;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 40px 0;
+    }
+
+    /* Floating confetti */
+    .confetti-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      opacity: 0;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0%   { transform: translateY(-20px) rotate(0deg);   opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(160deg, #ffffff 0%, #fff0fb 100%);
+      border-radius: 32px;
+      width: min(520px, 92vw);
+      padding: 48px 40px 44px;
+      box-shadow:
+        0 0 0 6px #ff6fd8,
+        0 0 0 12px #ffdd57,
+        0 20px 60px rgba(0,0,0,0.4);
+      text-align: center;
+      animation: popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.4) rotate(-6deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    /* Balloons */
+    .balloons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+
+    .balloon {
+      font-size: 3rem;
+      animation: sway 3s ease-in-out infinite alternate;
+      display: inline-block;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    }
+    .balloon:nth-child(1) { animation-delay: 0s;    animation-duration: 2.8s; }
+    .balloon:nth-child(2) { animation-delay: 0.4s;  animation-duration: 3.2s; }
+    .balloon:nth-child(3) { animation-delay: 0.8s;  animation-duration: 2.6s; }
+    .balloon:nth-child(4) { animation-delay: 1.2s;  animation-duration: 3.4s; }
+    .balloon:nth-child(5) { animation-delay: 0.2s;  animation-duration: 3.0s; }
+
+    @keyframes sway {
+      from { transform: rotate(-8deg) translateY(0px);  }
+      to   { transform: rotate(8deg)  translateY(-10px);}
+    }
+
+    /* Number 7 badge */
+    .number-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6fd8, #ff3c8e);
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 5.5rem;
+      line-height: 1;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow:
+        0 0 0 5px white,
+        0 0 0 10px #ffdd57,
+        0 10px 30px rgba(255,111,216,0.5);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1);    box-shadow: 0 0 0 5px white, 0 0 0 10px #ffdd57, 0 10px 30px rgba(255,111,216,0.5); }
+      50%       { transform: scale(1.06); box-shadow: 0 0 0 5px white, 0 0 0 14px #ffdd57, 0 14px 40px rgba(255,111,216,0.7); }
+    }
+
+    /* Heading */
+    .happy {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: #a855f7;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .birthday-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3rem;
+      background: linear-gradient(90deg, #ff3c8e, #ff9f40, #ffdd57, #3cffa5, #4fc3f7, #a855f7);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+      line-height: 1.1;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%;   }
+      100% { background-position: 300% 50%; }
+    }
+
+    .name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 4rem;
+      color: #ff3c8e;
+      text-shadow: 3px 3px 0 #ffdd57, 5px 5px 0 rgba(255,60,142,0.2);
+      margin-top: 6px;
+      animation: bounce 1s ease infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-6px); }
+    }
+
+    /* Divider */
+    .divider {
+      margin: 22px auto;
+      width: 80%;
+      height: 3px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #ff6fd8, #ffdd57, #ff6fd8);
+    }
+
+    /* Message */
+    .message {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.7;
+      font-weight: 700;
+    }
+
+    .message .highlight {
+      color: #ff3c8e;
+      font-size: 1.2rem;
+    }
+
+    /* Emoji row */
+    .emoji-row {
+      font-size: 1.8rem;
+      margin: 18px 0 6px;
+      letter-spacing: 6px;
+      animation: wiggle 2s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25%       { transform: rotate(-4deg) scale(1.05); }
+      75%       { transform: rotate(4deg)  scale(1.05); }
+    }
+
+    /* Cake */
+    .cake {
+      font-size: 4.5rem;
+      margin: 16px 0;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.15));
+      animation: floatCake 2.5s ease-in-out infinite alternate;
+      display: block;
+    }
+
+    @keyframes floatCake {
+      from { transform: translateY(0) scale(1);    }
+      to   { transform: translateY(-8px) scale(1.04); }
+    }
+
+    /* Photo strip */
+    .photo-strip {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .photo-strip-label {
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.95rem;
+      color: #a855f7;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .photo-frame {
+      flex: 1;
+      max-width: 140px;
+      background: white;
+      border-radius: 12px;
+      padding: 6px 6px 28px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.1);
+      transform-origin: bottom center;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    .photo-frame:nth-child(1) { transform: rotate(-4deg); }
+    .photo-frame:nth-child(2) { transform: rotate(1deg) translateY(-6px); }
+    .photo-frame:nth-child(3) { transform: rotate(3.5deg); }
+
+    .photo-frame:hover {
+      transform: rotate(0deg) scale(1.08) translateY(-8px) !important;
+      z-index: 10;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 24px;
+      font-size: 1rem;
+      color: #ff3c8e;
+      font-family: 'Fredoka One', cursive;
+      letter-spacing: 1px;
+    }
+
+    /* Stars */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.1; transform: scale(0.8); }
+      to   { opacity: 0.9; transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Starfield -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Confetti -->
+  <div class="confetti-container" id="confetti"></div>
+
+  <!-- The Card -->
+  <div class="card">
+    <div class="balloons">
+      <span class="balloon">🎈</span>
+      <span class="balloon">🎈</span>
+      <span class="balloon">🎈</span>
+      <span class="balloon">🎈</span>
+      <span class="balloon">🎈</span>
+    </div>
+
+    <div class="number-badge">7</div>
+
+    <div class="happy">Happy</div>
+    <div class="birthday-text">Birthday</div>
+    <div class="name">Will!</div>
+
+    <div class="divider"></div>
+
+    <span class="cake">🎂</span>
+
+    <p class="message">
+      Today you are a whole <span class="highlight">SEVEN years old</span> — and that is seriously amazing! 🌟<br><br>
+      Wishing you a day packed with fun, laughter, and all your favourite things. May this year bring you incredible adventures and endless smiles. 😄
+    </p>
+
+    <div class="emoji-row">🎁 🎉 🚀 ⭐ 🎊</div>
+
+    <div class="photo-strip-label">📸 Will through the years</div>
+    <div class="photo-strip">
+      <div class="photo-frame">
+        <img src="will1.png" alt="Will photo 1" />
+      </div>
+      <div class="photo-frame">
+        <img src="will2.png" alt="Will photo 2" />
+      </div>
+      <div class="photo-frame">
+        <img src="will3.png" alt="Will photo 3" />
+      </div>
+    </div>
+
+    <div class="footer">Happy Birthday with Love — Nikki &amp; Grandpa 💛</div>
+  </div>
+
+  <script>
+    // Generate confetti
+    const confettiColors = ['#ff3c8e','#ffdd57','#ff9f40','#4fc3f7','#a855f7','#3cffa5','#ff6fd8'];
+    const shapes = ['border-radius:50%', 'border-radius:3px', 'clip-path:polygon(50% 0%,100% 100%,0% 100%)'];
+    const container = document.getElementById('confetti');
+    for (let i = 0; i < 70; i++) {
+      const el = document.createElement('div');
+      el.classList.add('confetti');
+      const size = Math.random() * 10 + 6;
+      el.style.cssText = `
+        left: ${Math.random() * 100}%;
+        width: ${size}px;
+        height: ${size}px;
+        background: ${confettiColors[Math.floor(Math.random() * confettiColors.length)]};
+        ${shapes[Math.floor(Math.random() * shapes.length)]};
+        animation-duration: ${Math.random() * 4 + 3}s;
+        animation-delay: ${Math.random() * 5}s;
+      `;
+      container.appendChild(el);
+    }
+
+    // Generate stars
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random() * 3 + 1;
+      star.style.cssText = `
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        width: ${size}px;
+        height: ${size}px;
+        animation-duration: ${Math.random() * 2 + 1.5}s;
+        animation-delay: ${Math.random() * 3}s;
+      `;
+      starsEl.appendChild(star);
+    }
+  </script>
+</body>
+</html>
